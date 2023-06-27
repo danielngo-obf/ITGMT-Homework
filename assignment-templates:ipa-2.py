@@ -90,14 +90,14 @@ def caesar_cipher(message, shift):
         list2 = [32 if l-shift == 32 else l for l in list1]
         
         for m in list2:
-            list3 = [(m-26) if shift<=26 and (m+shift) > 90 else m for m in list2]
-        
+            list3 = [(64+shift) if m > 90 and shift <= 26 else m for m in list2]
+            
             for n in list3:
                 list4 = [(((n-90)%26) + 64) if shift > 26 and (n+shift) > 90 and n!=32 else n for n in list3]
                 
-                listToStr = ''.join([chr(n) for n in list4])
+    listToStr = ''.join([chr(n) for n in list4])
                 
-                return listToStr
+    return listToStr
 
 def shift_by_letter(letter, letter_shift):
     '''Shift By Letter.
