@@ -42,55 +42,18 @@ def relationship_status(from_member, to_member, social_graph):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     
-    social_graph = {
-    "@bongolpoc":{"first_name":"Joselito",
-                  "last_name":"Olpoc",
-                  "following":[
-                  ]
-    },
-    "@joaquin":  {"first_name":"Joaquin",
-                  "last_name":"Gonzales",
-                  "following":[
-                      "@chums","@jobenilagan"
-                  ]
-    },
-    "@chums" : {"first_name":"Matthew",
-                "last_name":"Uy",
-                "following":[
-                    "@bongolpoc","@miketan","@rudyang","@joeilagan"
-                ]
-    },
-    "@jobenilagan":{"first_name":"Joben",
-                   "last_name":"Ilagan",
-                   "following":[
-                    "@eeebeee","@joeilagan","@chums","@joaquin"
-                   ]
-    },
-    "@joeilagan":{"first_name":"Joe",
-                  "last_name":"Ilagan",
-                  "following":[
-                    "@eeebeee","@jobenilagan","@chums"
-                  ]
-    },
-    "@eeebeee":  {"first_name":"Elizabeth",
-                  "last_name":"Ilagan",
-                  "following":[
-                    "@jobenilagan","@joeilagan"
-                  ]
-    },
-}
-    
     fr_mem = str(from_member)
     to_mem = str(to_member)
     
-    if fr_mem in social_graph.get(to_mem, {}).get('following', []):
-        if to_mem in social_graph.get(fr_mem, {}).get('following', []):
-            return 'friends'
-        else:
-            return 'follower'
-        
-    elif to_mem in social_graph.get(fr_mem, {}).get('following', []):
+    if fr_mem in social_graph.get(to_mem, {}).get('following', []) and to_mem in social_graph.get(fr_mem, {}).get('following', []):
+        return 'friends'
+    
+    elif fr_mem in social_graph.get(to_mem, {}).get('following', []):
         return 'followed by'
+    
+    elif to_mem in social_graph.get(fr_mem, {}).get('following', []):
+        return 'follower'
+    
     else:
         return 'no relationship'
 
@@ -134,7 +97,7 @@ def tic_tac_toe(board):
     # Check diagonals
     if all(board[i][i] == board[0][0] for i in range(b_size)) and board[0][0] != '':
         return board[0][0]
-    if all(board[i][size - i - 1] == board[0][b_size - 1] for i in range(b_size)) and board[0][size - 1] != '':
+    if all(board[i][b_size - i - 1] == board[0][b_size - 1] for i in range(b_size)) and board[0][b_size - 1] != '':
         return board[0][b_size - 1]
     
     return "NO WINNER"
@@ -186,6 +149,6 @@ def eta(first_stop, second_stop, route_map):
         
         current_stop = next_stop
 
-    return str(total_time) + str(' minutes')
+    return int(total_time)
 
     #made with the assistance of ChatGPT
