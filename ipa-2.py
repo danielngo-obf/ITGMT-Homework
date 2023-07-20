@@ -83,19 +83,22 @@ def caesar_cipher(message, shift):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     
-    letters = list(message) 
-    list1 = [ord(i)+shift for i in letters]
-    
-    for l in list1:
-        list2 = [32 if l-shift == 32 else l for l in list1]
+    letters = list(message)
+    shift_list = [ord(i) + shift for i in letters]
+
+    for a in shift_list:
+        space_list = [32 if (a-shift) == 32 else a for a in shift_list]
         
-        for m in list2:
-            list3 = [(64+shift) if m > 90 and shift <= 26 else m for m in list2]
-            
-            for n in list3:
-                list4 = [(((n-90)%26) + 64) if shift > 26 and (n+shift) > 90 and n!=32 else n for n in list3]
+        for b in space_list:
+            if shift > 26:
+                check = [(((b-90)%26)+64) if b>90 else b for b in space_list]
                 
-    listToStr = ''.join([chr(n) for n in list4])
+                for c in check:
+                    check = [90 if c == 64 else c for c in check]
+            else:
+                check = [((b-90)+64) if b>90 else b for b in space_list]
+        
+    listToStr = ''.join([chr(d) for d in check])
                 
     return listToStr
 
