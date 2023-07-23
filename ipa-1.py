@@ -34,7 +34,7 @@ def savings(gross_pay, tax_rate, expenses):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
    
-    tax_deduc = int(gross_pay * tax_rate)
+    tax_deduc = gross_pay * tax_rate
     net_pay = gross_pay - tax_deduc
     takehome_pay = int(net_pay - expenses)
     return takehome_pay
